@@ -33,13 +33,10 @@ $Id: html.xsl 630 2008-12-07 13:18:16Z dleidert $
 -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
  xmlns:r="http://xmlresume.sourceforge.net/resume/0.0" 
- xmlns="http://www.w3.org/1999/xhtml"
  version="1.0"
  exclude-result-prefixes="r">
 
-  <xsl:output method="xml" omit-xml-declaration="yes" indent="no" encoding="UTF-8" 
-   doctype-public="-//W3C//DTD XHTML 1.0 Strict//EN" 
-   doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"/>
+  <xsl:output method="html" omit-xml-declaration="yes" indent="yes" encoding="UTF-8"/>
    
   <xsl:strip-space elements="*"/>
   <xsl:include href="../params.xsl"/>
@@ -56,6 +53,7 @@ $Id: html.xsl 630 2008-12-07 13:18:16Z dleidert $
   </xsl:template>
 
   <xsl:template match="/">
+    <xsl:text disable-output-escaping='yes'>&lt;!DOCTYPE html></xsl:text>
     <html>
       <head>
         <title>
