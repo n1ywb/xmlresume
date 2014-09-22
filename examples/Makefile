@@ -67,12 +67,13 @@ text_style = $(xsl_base)/output/$(country)-text.xsl
 fo_style = $(xsl_base)/output/$(country)-$(papersize).xsl
 upgrade_13x_140_style = $(xsl_base)/misc/13x-140.xsl
 
+xsl_flags=--param css.href externals/xmlresume/src/www/css/professional.css
+
 #------------------------------------------------------------------------------
 # Processing software
 #------------------------------------------------------------------------------
 
-xsl_proc = java org.apache.xalan.xslt.Process $(xsl_flags) -in $< -out $@ -xsl
-#xsl_proc = java com.icl.saxon.StyleSheet $(xsl_flags) -o $@ $<
+xsl_proc = xsltproc $(xsl_flags) -o $@
 
 pdf_proc = java org.apache.fop.apps.Fop -fo $(fo_flags) $< -pdf $@ -q
 #pdf_proc = ~/bin/xep/run.sh $(fo_flags) $< $@
@@ -127,13 +128,13 @@ clean:
 	$(RM) *.html *.txt *.fo *.rtf *.pdf *-filtered.xml *-140.xml
 
 %.html: %.xml
-	$(xsl_proc) $(html_style)
+	$(xsl_proc) $(html_style) $<
 
 %.txt: %.xml
-	$(xsl_proc) $(text_style)
+	$(xsl_proc) $(text_style) $<
 
 %.fo: %.xml
-	$(xsl_proc) $(fo_style)
+	$(xsl_proc) $(fo_style) $<
 
 %.pdf: %.fo
 	$(pdf_proc)
@@ -142,7 +143,7 @@ clean:
 	$(rtf_proc)
 
 %-140.xml: %.xml
-	$(xsl_proc) $(upgrade_13x_140_style)
+	$(xsl_proc) $(upgrade_13x_140_style) $<
 
 %-filtered.xml: %.xml
 	$(filter_proc)
