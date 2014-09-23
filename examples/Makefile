@@ -58,16 +58,16 @@ country ?= us
 # Options: letter for country=us, a4 for others
 papersize ?= letter
 
-xsl_base ?= http://xmlresume.sourceforge.net/xsl
+#xsl_base ?= http://xmlresume.sourceforge.net/xsl
 #xsl_base = ../xsl
-#xsl_base = ../src/www/xsl
+xsl_base = ../src/www/xsl
 
 html_style = $(xsl_base)/output/$(country)-html.xsl
 text_style = $(xsl_base)/output/$(country)-text.xsl
 fo_style = $(xsl_base)/output/$(country)-$(papersize).xsl
 upgrade_13x_140_style = $(xsl_base)/misc/13x-140.xsl
 
-xsl_flags=--param css.href externals/xmlresume/src/www/css/professional.css
+xsl_flags=--stringparam css.href ../../css/professional.css
 
 #------------------------------------------------------------------------------
 # Processing software
