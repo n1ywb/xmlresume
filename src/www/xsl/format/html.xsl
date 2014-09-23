@@ -53,7 +53,8 @@ $Id: html.xsl 630 2008-12-07 13:18:16Z dleidert $
   </xsl:template>
 
   <xsl:template match="/">
-    <xsl:text disable-output-escaping='yes'>&lt;!DOCTYPE html></xsl:text>
+    <xsl:text disable-output-escaping='yes'>&lt;!DOCTYPE html>
+</xsl:text>
     <html>
       <head>
         <title>
